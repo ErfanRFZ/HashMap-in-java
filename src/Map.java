@@ -47,5 +47,14 @@ public class Map {
         }
 
         System.out.println("Result of ConcurrentHashmap after iterating: " + ConcurrentHashMap);
+
+        //Multiple Threads
+        ConcurrentHashMap<Integer, String> Hash = new ConcurrentHashMap<>();
+        new WriterThread(Hash, "Thread-1", 1).start();
+        new WriterThread(Hash, "Thread-2", 2).start();
+
+        for (int i = 1; i <= 5; i++) {
+            new ReaderThread(Hash, "Multiple-Threads" + i).start();
+        }
     }
 }
